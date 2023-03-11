@@ -18,7 +18,7 @@ export const getAll = () =>
   fetch(`${api}/books`, { headers })
     .then((res) => res.json())
     .then((data) => data.books);
-
+// test
 export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
     method: "PUT",
@@ -26,8 +26,17 @@ export const update = (book, shelf) =>
       ...headers,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ shelf }),
-  }).then((res) => res.json());
+    body: JSON.stringify({shelf}),
+  })
+  .then(  res => {
+      if(res.ok) {
+        return res.json();
+      }
+      else {
+        throw new Error("an error ocured");
+      }
+  })
+  .catch( err => {throw new Error(err)});
 
 export const search = (query, maxResults) =>
   fetch(`${api}/search`, {
