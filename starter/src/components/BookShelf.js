@@ -11,7 +11,7 @@ export const BookShelf = ({ books, title, upDateShelf }) => {
             <li key={b.id}>
               <Book book={b} upDateShelf={upDateShelf} />
             </li>
-          )) : <span> Your {title} Shelf Is Empty</span>}
+          )) : <span> Your <b> {title}</b> Shelf Is Empty</span>}
         </ol>
       </div>
     </div>

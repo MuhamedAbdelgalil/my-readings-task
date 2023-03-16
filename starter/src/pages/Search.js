@@ -60,12 +60,12 @@ export const SearchPage = ({ books }) => {
 
   const upDateShelf = (book, shelf) => {
     setIsLoading(true);
-    const upDateBooks = sbooks.map((e) => {
-      if (e.id === book.id) {
+    const upDateBooks = sbooks.map((item) => {
+      if (item.id === book.id) {
         book.shelf = shelf;
         return book;
       }
-      return e;
+      return item;
     });
     setSbooks(upDateBooks);
     BooksAPI.update(book, shelf);
@@ -91,7 +91,6 @@ export const SearchPage = ({ books }) => {
                   onChange={(e) => setQuery(e.target.value)}
                   ref={searchInputRef}
                 />
-                {console.log(sbooks)}
               </div>
             </div>
             <div className="search-books-results">
@@ -108,7 +107,8 @@ export const SearchPage = ({ books }) => {
                     ))}
                   </ol>
                 </div>
-              ) : <span> No Available Books Matched!</span>}
+              ) : value && <p style={{textAlign: "center"}}> No Available Books Matched!</p>
+              }
             </div>
           </div>
       }

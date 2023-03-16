@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BookShelf } from "../components/BookShelf";
 import { Link } from "react-router-dom";
+import { BookShelf } from "../components/BookShelf";
 import * as BooksAPI from "../BooksAPI";
 import Spinner from "../shared/components/Spinner";
+import { SHELF } from "../shared/helper/Constant";
 
 export const Home = () => {
   const [books, setBooks] = useState([]);
@@ -37,9 +38,9 @@ export const Home = () => {
     });
   };
 
-  const currentlyReading = books.filter((book) => book.shelf === "currentlyReading");
-  const wantToRead = books.filter((book) => book.shelf === "wantToRead");
-  const read = books.filter((book) => book.shelf === "read");
+  const currentlyReading = books.filter((book) => book.shelf === SHELF.CURRENTLY_READING);
+  const wantToRead = books.filter((book) => book.shelf === SHELF.WANT_TO_READ);
+  const read = books.filter((book) => book.shelf === SHELF.READ);
 
   return (
     <>
